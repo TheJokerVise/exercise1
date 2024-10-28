@@ -18,7 +18,7 @@ SPA with Photo Album list with filter, ordering and preview of selected album
 
 To run this project locally, follow these steps:
 
-1. unzip of project from folder named ....
+1. unzip of project from folder named nidek-photo-album
 2. Install dependencies
 
    bash
