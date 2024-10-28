@@ -141,7 +141,7 @@ function usePhotoAlbum(): [
   any,
   Photo[],
   Photo[],
-  any,
+  any, //
   number
 ] {
   const [albumData, setAlbumData] = React.useState<Album[]>([]);
