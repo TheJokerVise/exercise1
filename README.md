@@ -27,7 +27,7 @@ To run this project locally, follow these steps:
 
    # or, if using Yarn
 
-   ### `yarn install`
+   ## `yarn install`
 
    Run the application
 
@@ -37,7 +37,7 @@ To run this project locally, follow these steps:
 
    # or with Yarn
 
-   ### `yarn start`
+   ## `yarn start`
 
 Open (http://localhost:3000) in your browser to see the app.
 
