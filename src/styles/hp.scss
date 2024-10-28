@@ -1,0 +1,55 @@
+.hp-typing {
+  display: inline-block;
+  font-size: 24px;
+  font-family: monospace;
+  white-space: nowrap;             
+  overflow: hidden;                
+  border-right: 2px solid;        
+  animation: typing 4s steps(30) 1s 1 normal both, blink 0.5s step-end infinite alternate;
+}
+
+/* Anima il testo che appare una lettera alla volta */
+@keyframes typing {
+  from { 
+    width: 0; 
+  }
+  to { 
+    width: 300px; 
+  }
+}
+
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
+}
+
+/* Bottone con apparizione ritardata */
+.delayed-button {
+  opacity: 0;                /* Inizialmente invisibile */
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: #ffffff;
+  background-color: #2274A5;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-family: monospace;
+  
+  /* Applicazione dell'animazione di apparizione */
+  animation: fadeIn 1s forwards;
+  animation-delay: 5s;       /* Ritardo di 5 secondi */
+}
+
+/* Effetto hover per il bottone */
+.delayed-button:hover {
+  background-color: #2274A5;
+}
+
+/* Animazione di apparizione */
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
