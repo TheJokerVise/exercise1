@@ -1,18 +1,16 @@
 import { PhotoAlbum } from "./components/PhotoAlbum";
-import {
-  BrowserRouter,
-  Link,
-  NavLink,
-  Route,
-  Router,
-  Routes,
-} from "react-router-dom";
+import { BrowserRouter, NavLink, Route, Routes } from "react-router-dom";
 import { Homepage } from "./components/Homepage";
 import "./styles/app.scss";
 
+/**
+ * Base component that host all application
+ * @returns
+ */
 function App() {
   return (
     <div className="app-container">
+      {/** Simply router */}
       <BrowserRouter>
         <div className="menu-list">
           <div className="menu-item">
@@ -28,7 +26,7 @@ function App() {
               to="/PhotoAlbum"
               className={({ isActive }) => (isActive ? "active" : "")}
             >
-              Album
+              Photo albums
             </NavLink>
           </div>
         </div>

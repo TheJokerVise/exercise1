@@ -6,7 +6,9 @@ import "../styles/photoAlbumStyle.scss";
 import { Photo } from "../model/Photo";
 import { Photos } from "./Photos";
 
+/** Photo Album function component */
 export const PhotoAlbum: React.FC = (): JSX.Element => {
+  /** all i need to publish from custom hook */
   const [
     albumData,
     isLoading,
@@ -26,6 +28,7 @@ export const PhotoAlbum: React.FC = (): JSX.Element => {
     selectAlbum,
     selectedAlbumId,
   ] = usePhotoAlbum();
+
   /**
    * use effect hook.
    * In this area call the function to load results from web API
@@ -35,7 +38,7 @@ export const PhotoAlbum: React.FC = (): JSX.Element => {
     fetchAlbumAndUsers();
   }, []);
 
-  // Effect to filter albums by searchValue
+  /** Effect to filter albums by searchValue */
   React.useEffect(() => {
     const lowerCaseQuery = searchValue.toLowerCase();
     setFilterResults(
@@ -45,12 +48,14 @@ export const PhotoAlbum: React.FC = (): JSX.Element => {
     );
   }, [searchValue, albumData]);
 
+  /** use effect to manage selected album */
   React.useEffect(() => {
     selectedAlbumId !== -1 && fetchPhotosByAlbumId();
   }, [selectedAlbumId]);
 
   return (
     <div className="photo-album-container">
+      {/** if i still waiting response then show loading component */}
       {isLoading ? (
         <Loading></Loading>
       ) : (
@@ -58,7 +63,7 @@ export const PhotoAlbum: React.FC = (): JSX.Element => {
           <div className="input-search-container">
             <input
               type="text"
-              placeholder="Cerca .."
+              placeholder="Filter .."
               value={searchValue}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 setSearchValue(e.target.value)
@@ -93,7 +98,7 @@ export const PhotoAlbum: React.FC = (): JSX.Element => {
                       {filterResults.map((album: Album) => (
                         <tr
                           key={album.id}
-                          className="item-row"
+                          className={"item-row " + "album-" + album.id}
                           onClick={() => selectAlbum(album.id)}
                         >
                           <td>{getUsernameById(album.userId).name}</td>
@@ -158,6 +163,23 @@ function usePhotoAlbum(): [
   };
 
   const selectAlbum = (id: number) => {
+    const prevSelected = document.getElementsByClassName("selected");
+    if (prevSelected && prevSelected.length > 0) {
+      for (let i = 0; i < prevSelected.length; i++) {
+        prevSelected[i].setAttribute(
+          "class",
+          prevSelected[i].className.replace("selected", "").trim()
+        );
+      }
+    }
+    const albumsSelected = document.getElementsByClassName("album-" + id);
+    if (albumsSelected && albumsSelected.length > 0) {
+      albumsSelected[0].setAttribute(
+        "class",
+        albumsSelected[0].className + " selected"
+      );
+    }
+
     setSelectedAlbumId(id);
   };
 
@@ -175,11 +197,10 @@ function usePhotoAlbum(): [
         throw new Error("Error...");
       }
 
-      // Estrapola i dati dalle risposte
+      // json data
       const albums = await respAlbum.json();
       const users = await respUsers.json();
 
-      // Imposta i dati nello stato
       setAlbumData(albums);
       setUserData(users);
     } catch (error) {
@@ -203,7 +224,7 @@ function usePhotoAlbum(): [
       const jsonPhotosData = await response.json();
       setPhotosData(jsonPhotosData);
     } catch (error) {
-      // setError(error.message);
+      alert("I'm sorry. There is an error on fetching data");
     } finally {
       setIsLoadingPhotos(false);
     }
@@ -229,8 +250,6 @@ function usePhotoAlbum(): [
     isLoading,
     searchValue,
     setSearchValue,
-    // fetchAlbumData,
-    // fetchUserData,
     fetchAlbumAndUsers,
     userData,
     getUsernameById,

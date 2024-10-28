@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import "../styles/hp.scss";
 
+/** Basic homepage component */
 export const Homepage: React.FC = (): JSX.Element => {
   return (
     <div className="homepage">
@@ -10,8 +11,8 @@ export const Homepage: React.FC = (): JSX.Element => {
       </div>
       <Link to="/PhotoAlbum">
         <button className="delayed-button">
-          <div>Continua</div>
-          <div>続く</div>{" "}
+          <div>Go to Killer Photo Album Application</div>
+          <div>キラーフォトアルバムアプリへ</div>
         </button>
       </Link>
     </div>

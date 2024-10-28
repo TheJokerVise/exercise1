@@ -3,6 +3,7 @@ import { PhotoItemProps } from "../model/PhotoItemProps";
 import { error } from "console";
 import { Loading } from "./Loading";
 
+/** PhotoItem component handle events on load or error img and return the resource */
 export const PhotoItem: React.FC<PhotoItemProps> = (props): JSX.Element => {
   const [
     isError,
@@ -19,18 +20,19 @@ export const PhotoItem: React.FC<PhotoItemProps> = (props): JSX.Element => {
 
       {/* official img */}
       <img
-        src={isError ? props.alterImg : props.src} // Se c'è un errore usa immagine di fallback
+        src={isError ? props.alterImg : props.src} // If there is an error use fallback image
         alt={props.alt}
-        onLoad={handleLoading} // Gestisce il caricamento corretto
-        onError={handleOnError} // Gestisce l'errore di caricamento
+        title={props.alt}
+        onLoad={handleLoading}
+        onError={handleOnError}
         style={{
-          display: isLoading ? "none" : "block", // Nasconde l'immagine finché carica
+          display: isLoading ? "none" : "block", // hide img during the loading
         }}
         className="my-img"
       />
 
-      {/* Messaggio di errore se il fallback fallisce */}
-      {isError && !props.alterImg && <p>Immagine non disponibile</p>}
+      {/* error message if fallback fail */}
+      {isError && !props.alterImg && <p>Image not available</p>}
     </div>
   );
 };
@@ -41,16 +43,16 @@ function usePhotoItem(
   const [isLoading, setIsLoading] = React.useState(true);
   const [isError, setIsError] = React.useState(false);
 
-  // Gestore per l'evento onLoad
+  // handle for loading event
   const handleLoading = () => {
-    setIsLoading(false); // L'immagine è stata caricata
-    setIsError(false); // Nessun errore
+    setIsLoading(false); // image loaded
+    setIsError(false); // no erro
   };
 
-  // Gestore per l'evento onError
+  // handle for error event
   const handleOnError = () => {
-    setIsLoading(false); // Fine caricamento anche in caso di errore
-    setIsError(true); // Errore rilevato
+    setIsLoading(false); // end of loading even if there is an error
+    setIsError(true); // there is an error
   };
 
   return [

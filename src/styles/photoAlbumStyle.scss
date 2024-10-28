@@ -4,7 +4,6 @@
   flex-direction: column;
   position: relative;
   height: 100vh;
-  // background: #121212;
 
   .title-album {
     position: sticky;
@@ -22,7 +21,6 @@
     flex-direction: column;
     position: relative;
     height: calc(100vh - 100px);
-    // background: #121212;
     padding-bottom: 20px;
     margin-top: 10px;
 
@@ -53,8 +51,8 @@
       overflow: hidden;
   
       .section {
-        flex: 1;                /* Ogni sezione occupa il 50% della larghezza */
-        overflow-y: auto;       /* Permette lo scrolling verticale all'interno delle sezioni */
+        flex: 1;                
+        overflow-y: auto; 
         padding: 10px;
         box-sizing: border-box;
       }
@@ -87,23 +85,22 @@
 
             th, td {
               padding: 12px;
-              border: 1px solid #4b4b4b; /* Bordi delle celle */
+              border: 1px solid #4b4b4b; 
             }
 
             tr:nth-child(odd) {
-              // background-color: #787676; /* Colore per righe dispari */
+              background-color: #0d0d0d; 
             }
             
             tr:nth-child(even) {
-              // background-color: #626060; /* Colore per righe pari */
+              background-color: #181818; 
             }
             
             thead {
-              // background-color: #333;
               color: white;
 
               tr {
-                // background-color: #333 !important;
+                background-color: transparent !important;
               }
             }
 
@@ -118,6 +115,10 @@
             .item-row {
               height: 30px;
               cursor: pointer;
+
+              &.selected {
+                background: rgb(46 61 71);
+              }
             }
           }
         }
@@ -149,8 +150,8 @@
           flex-direction: column;
 
           .my-img {
-            max-width: 150px;
-            max-height: 150px;
+            width: 150px;
+            height: 150px;
           }
         }
       }

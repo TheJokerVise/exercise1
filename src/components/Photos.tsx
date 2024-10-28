@@ -4,6 +4,7 @@ import { PhotosProps } from "../model/PhotosProps";
 import { PhotoItem } from "./PhotoItem";
 import imageNOTavailable from "../resources/imageNotavailable.png";
 
+/** Photos component to manage all photos item in a restricted area */
 export const Photos: React.FC<PhotosProps> = (
   props: PhotosProps
 ): JSX.Element => {
@@ -21,20 +22,3 @@ export const Photos: React.FC<PhotosProps> = (
     </div>
   );
 };
-
-function usePhotos(): [any, any] {
-  const [hasError, setHasError] = React.useState<boolean>(false);
-  // const
-  //
-  const handleError = () => {
-    // setImgSrc(fallbackSrc); //
-    setHasError(true); //
-  };
-
-  //
-  const handleLoad = () => {
-    setHasError(false); //
-  };
-
-  return [handleError, handleLoad];
-}
